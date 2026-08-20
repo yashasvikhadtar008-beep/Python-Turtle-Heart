@@ -1,50 +1,18 @@
-#🔐Password Strength Analyzer
+import math
+from turtle import *
 
-def check_password(password):
-    length_check = len(password) >= 8
+def heart(k):
+    return 15 * math.sin(k)**3
 
-    uppercase_check=False
-    lowercase_check=False
-    digit_check=False
-    special_check=False
-    space_check=" " not in password
+def heart1(k):
+    return 12 * math.cos(k) - 5 * math.cos(2*k) - 2 * math.cos(3*k) - math.cos(4*k)
 
-    for character in password:
+speed(1000)
+bgcolor('black')
 
-        if character.isupper():
-            uppercase_check=True
+for i in range(6000):
+    goto(heart(i) * 20, heart1(i) * 20)
+    for j in range(5):
+        color("purple")
 
-        elif character.islower():
-            lower_check=True
-
-        elif character.isdigit():
-            digit_check=True
-
-        elif not character.isalnum() and character!=" ":
-            special_check=True
-
-    score = sum([   
-        length_check,
-        uppercase_check,
-        lowercase_check,
-        digit_check,
-        special_check,
-        space_check,
-
-    ])
-
-        
-    if score == 6:
-        strength="💪 Strong"
-
-    elif score >= 6:
-        strength="🙂 Medium"
-
-    else:
-        strength="⚠️Weak"
-
-    print("\n🔐 Password Strength Analysis")
-    print("----------------------------")
-
-    print("Length(minimum 8 character)", "passed✅" if length_check else "Failed❌")
-
+done()
